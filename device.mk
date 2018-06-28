@@ -94,3 +94,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/vendor/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/vendor/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/vendor/etc/permissions/android.hardware.sensor.stepdetector.xml \
+
+
+#################
+#  Fingerprint  #
+#################
+
+# Fingerprint Package
+PRODUCT_PACKAGES += \
+    mcDriverDaemon \
+    fingerprint.exynos5 \
