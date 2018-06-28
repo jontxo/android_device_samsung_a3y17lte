@@ -75,10 +75,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_gains.xml:system/etc/mixer_gains.xml \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
-<<<<<<< HEAD
-=======
 # Audio Package
 PRODUCT_PACKAGES += \
    libtfa98xx \
+   audio_amplifier.universal7870 \
    libtinycompress
->>>>>>> f852af9... a3y17lte: Add audio package
+
