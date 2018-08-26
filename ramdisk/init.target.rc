@@ -1,3 +1,7 @@
+on init
+    chown system package_info /config/sdcardfs
+
+
 on post-fs-data
 
     # Mobicore
@@ -10,7 +14,7 @@ on post-fs-data
 on post-fs
 
     # Mobicore
-    setprop sys.mobicoredaemon.enable stopped
+    setprop sys.mobicoredaemon.enable stoppeds
 
     # create basic filesystem structure
     mkdir /data/misc 01771 system misc
@@ -53,6 +57,16 @@ on post-fs
     mkdir /data/misc/profiles 0771 system system
     mkdir /data/misc/profiles/cur 0771 system system
     mkdir /data/misc/profiles/ref 0771 system system
+
+    # icd
+    check_icd
+    chown system system /dev/icd
+    chmod 0644 /dev/icd
+    chown system system /dev/icdr
+    chmod 0644 /dev/icdr
+    chown system system /dev/tzic
+    restorecon /dev/icd
+    restorecon /dev/icdr
 
 on boot
 
@@ -273,12 +287,6 @@ on boot
     chown system radio /sys/class/sec/sec_touchkey/touchkey_earjack
     chown system radio /sys/class/sec/sec_touchkey/touchkey_light_version
     chown system radio /sys/class/sec/sec_touchkey/touchkey_light_id_compare
-    
-    # Sensorhub service
-    service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
 
     # IO stats Deamon
     service iod /system/bin/iod
@@ -313,7 +321,7 @@ on nonencrypted
 on property:vold.decrypt=trigger_restart_framework
     mkdir /data/misc/mcRegistry 0775 system system
 
-    service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+    service mobicore /system/bin/mcDriverDaemon -r /system/app/mcRegistry/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
     class core
     user system
     group system

@@ -2,7 +2,7 @@
 ro.product.first_api_level=23
 
 # DPI
-ro.sf.lcd_density=311
+ro.sf.lcd_density=360
 
 # Sdcardfs
 ro.sys.sdcardfs=false
